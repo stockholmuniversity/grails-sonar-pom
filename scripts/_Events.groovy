@@ -54,6 +54,7 @@ eventCompileEnd = { kind ->
   Model model = new Model();
   model.modelVersion ="4.0.0"
   model.name = grailsAppName
+  model.packaging = 'pom'
 
   model.groupId = groupId ?: grailsAppName
   model.artifactId = grailsAppName
