@@ -1,0 +1,8 @@
+target
+plugin.xml
+web-app
+test
+.idea
+*.iml
+.project
+.classpath
