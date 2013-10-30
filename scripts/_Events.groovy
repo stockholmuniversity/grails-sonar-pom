@@ -41,7 +41,11 @@ eventCompileEnd = { kind ->
 
   // Get groupId, from a few different locations
   def pluginAttrs = pluginInfos?.find { it?.name == grailsAppName}?.attributes
-  def groupId = pluginAttrs?.group ?: pluginAttrs?.groupId ?: metadata.'app.groupId' ?: buildConfig?.grails?.project?.groupId ?: config?.grails?.project?.groupId
+  def groupId = null
+  if (pluginAttrs instanceof Map) {
+    groupId = pluginAttrs?.group ?: pluginAttrs?.groupId
+  }
+  groupId = groupId ?: metadata.'app.groupId' ?: buildConfig?.grails?.project?.groupId ?: config?.grails?.project?.groupId
 
   if (! groupId) {
     println "WARNING: No groupId configured for ${grailsAppName}, will use app.name=${grailsAppName} for groupId."
