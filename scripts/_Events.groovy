@@ -40,7 +40,7 @@ eventCompileEnd = { kind ->
   println "Building sonar pom '${file}' for ${grailsAppName}"
 
   // Get groupId, from a few different locations
-  def pluginAttrs = pluginInfos?.find { it?.name == 'grails-sonar-pom'}?.attributes
+  def pluginAttrs = pluginInfos?.find { it?.name == grailsAppName}?.attributes
   def groupId = pluginAttrs?.group ?: pluginAttrs?.groupId ?: metadata.'app.groupId' ?: buildConfig?.grails?.project?.groupId ?: config?.grails?.project?.groupId
 
   if (! groupId) {
