@@ -73,6 +73,7 @@ eventCompileEnd = { kind ->
   model.addProperty('sonar.language', 'grvy')
   model.addProperty('sonar.dynamicAnalysis', 'reuseReports')
   model.addProperty('sonar.cobertura.reportPath', 'target/test-reports/cobertura/coverage.xml')
+  model.addProperty('sonar.junit.reportsPath', 'target/test-reports')
 
   new MavenXpp3Writer().write(new OutputStreamWriter(new FileOutputStream(new File(file))), model );
 }
