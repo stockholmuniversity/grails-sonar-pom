@@ -32,6 +32,7 @@
 import org.apache.maven.model.Build
 import org.apache.maven.model.Model
 import org.apache.maven.model.io.xpp3.MavenXpp3Writer
+import org.codehaus.groovy.grails.plugins.PluginInfo
 
 eventCompileEnd = { kind ->
   def file = 'sonar.xml'
@@ -39,8 +40,10 @@ eventCompileEnd = { kind ->
 
   println "Building sonar pom '${file}' for ${grailsAppName}"
 
+  PluginInfo pluginInfo = pluginSettings.getPluginInfo(basedir)
+
   // Get groupId, from a few different locations
-  def pluginAttrs = pluginInfos?.find { it?.name == grailsAppName}?.attributes
+  def pluginAttrs = pluginInfo?.attributes
   def groupId = null
   if (pluginAttrs instanceof Map) {
     groupId = pluginAttrs?.group ?: pluginAttrs?.groupId
@@ -58,7 +61,7 @@ eventCompileEnd = { kind ->
 
   model.groupId = groupId ?: grailsAppName
   model.artifactId = grailsAppName
-  model.version = metadata.'app.version'
+  model.version = metadata.'app.version' ?: pluginInfo.version
 
   def sourceDirs = [
           'src/groovy',
