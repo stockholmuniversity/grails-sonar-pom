@@ -40,7 +40,7 @@ eventCompileEnd = { kind ->
 
   println "Building sonar pom '${file}' for ${grailsAppName}"
 
-  PluginInfo pluginInfo = pluginSettings.getPluginInfo(basedir)
+  def pluginInfo = pluginSettings.getPluginInfo(basedir)
 
   // Get groupId, from a few different locations
   def pluginAttrs = pluginInfo?.attributes
